@@ -43,3 +43,28 @@ int handle_commands(char *input, char *argv[])
 	}
 	return (1);
 }
+
+/**
+* handle_comments - function to search and handle comments
+* @input: The character to search for
+* Return: Return nothing
+*/
+
+void handle_comments(char *input)
+{
+	char *ptr;
+
+	if (input == NULL)
+	{
+		return;
+	}
+	ptr = input;
+	while ((ptr = _memchr(ptr, '#', _strlen(ptr))) != NULL);
+	{
+		if (*ptr == '#')
+		{
+		*ptr = '\0';
+		}
+		ptr++;
+	}
+}
