@@ -8,7 +8,6 @@
 int handle_commands(char *input, char *argv[])
 {
 	char *ptr, **toks;
-	int i = 0;
 
 	ptr = input;
 	while ((ptr = _memchr(ptr, ';', _strlen(ptr))) != NULL)
@@ -25,10 +24,22 @@ int handle_commands(char *input, char *argv[])
 		{
 			return (-1);
 		}
-	i = zimbo_execute(toks, argv);
+	zimbo_execute(toks, argv);
 	free(toks);
 	ptr++;
 	input = ptr;
+	}
+	ptr = input;
+	if ((ptr = _memchr(ptr, ';', _strlen(ptr))) == NULL)
+	{
+		toks = zimbo_split(input);
+			if (toks == NULL)
+			{
+				return (-1);
+				free(toks);
+			}
+		zimbo_execute(toks, argv);
+		free(toks);
 	}
 	return (1);
 }
