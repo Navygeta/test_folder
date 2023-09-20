@@ -22,7 +22,7 @@ int handle_commands(char *input, char *argv[])
 	toks = zimbo_split(input);
 		if (toks == NULL)
 		{
-			return (-1);
+		return (-1);
 		}
 	zimbo_execute(toks, argv);
 	free(toks);
@@ -33,11 +33,11 @@ int handle_commands(char *input, char *argv[])
 	if ((ptr = _memchr(ptr, ';', _strlen(ptr))) == NULL)
 	{
 		toks = zimbo_split(input);
-			if (toks == NULL)
-			{
-				return (-1);
-				free(toks);
-			}
+		if (toks == NULL)
+		{
+			return (-1);
+			free(toks);
+		}
 		zimbo_execute(toks, argv);
 		free(toks);
 	}
