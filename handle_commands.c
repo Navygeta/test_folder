@@ -14,20 +14,17 @@ int handle_commands(char *input, char *argv[])
 	{
 		*ptr = '\0';
 		ptr++;
-	if (*ptr == '\0')
-	{
-		ptr++;
-		continue;
-	}
-	toks = zimbo_split(input);
-		if (toks == NULL)
+		if (*ptr == '\0')
 		{
-		return (-1);
+			ptr++;
+			continue;
 		}
-	zimbo_execute(toks, argv);
-	free(toks);
-	ptr++;
-	input = ptr;
+		toks = zimbo_split(input);
+		if (toks == NULL)
+			return (-1);
+		zimbo_execute(toks, argv);
+		free(toks);
+		input = ptr;
 	}
 	ptr = input;
 	if ((ptr = _memchr(ptr, ';', _strlen(ptr))) == NULL)
@@ -59,12 +56,10 @@ void handle_comments(char *input)
 		return;
 	}
 	ptr = input;
-	while ((ptr = _memchr(ptr, '#', _strlen(ptr))) != NULL);
+	while ((ptr = _memchr(ptr, '#', _strlen(ptr))) != NULL)
 	{
 		if (*ptr == '#')
-		{
-		*ptr = '\0';
-		}
+			*ptr = '\0';
 		ptr++;
 	}
 }
